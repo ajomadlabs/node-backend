@@ -4,6 +4,17 @@ import store from 'store';
 import jsonpatch from 'jsonpatch';
 import auth from '../config/auth';
 
+// Defining Helper Function - Authetication Verification
+const verify = (req, res) => {
+  const token = req.headers['authorization'];
+  const decoded = jwt.verify(token, auth.secret);
+  if (decoded === store.get('username')) {
+    return true;
+  } else {
+    return false;
+  }
+}
+
 // Export routes
 module.exports = (app) => {
   /*
@@ -29,9 +40,14 @@ module.exports = (app) => {
     Sends the Patched Document 
   */
   app.post('/applyjsonpatch', (req, res) => {
-    const jsonObject = req.body.jobject;
-    const jsonPatchObject = req.body.jpobject;
-    const patchDoc = jsonpatch.apply_patch(jsonObject, jsonPatchObject);
-    res.send(patchDoc);
+    const verification = verify(req, res);
+    if (verification === true) {
+      const jsonObject = req.body.jobject;
+      const jsonPatchObject = req.body.jpobject;
+      const patchDoc = jsonpatch.apply_patch(jsonObject, jsonPatchObject);
+      res.send(patchDoc);
+    } else {
+      res.send('Unauthorized');
+    }
   })
 };

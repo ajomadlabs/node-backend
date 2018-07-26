@@ -34,6 +34,7 @@ describe('/POST login', () => {
     .send(userCredentials)
     .end((err, res) => {
       res.should.have.status(404)
+      res.body.should.be.property('error')
       done()
     })
   })

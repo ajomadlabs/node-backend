@@ -36,14 +36,14 @@ const downloadImageAndResize = async (options, res) => {
     }) => {
       imgresize(file.readFileSync(filename), {width: 50, height: 50}).then(data => {
         res.setHeader('Content-type', 'image/png')
-        res.send(data)
+        res.status(200).send(data)
         file.unlinkSync(filename)
       }).catch((err) => {
-        res.send(err)
+        res.status(404).send({error: err})
       })
     })
   } catch (e) {
-    res.send('Error processing image')
+    res.status(404).send({error: 'Error processing image'})
   }
 }
 
@@ -65,7 +65,7 @@ module.exports = (app) => {
       store.set('username', userName + password)
       res.send({token: token})
     } else {
-      res.status(404).send('Invalid Email')
+      res.status(404).send({error: 'Invalid Email'})
     }
   })
   /*
@@ -82,12 +82,12 @@ module.exports = (app) => {
         const jsonObject = req.body.jobject
         const jsonPatchObject = req.body.jpobject
         const patchDoc = jsonpatch.apply_patch(jsonObject, jsonPatchObject)
-        res.send(patchDoc)
+        res.status(200).send(patchDoc)
       } catch (e) {
-        res.send(e)
+        res.status(404).send({error: 'Invalid Operation'})
       }
     } else {
-      res.send('Unauthorized')
+      res.status(404).send({error: 'Unauthorized'})
     }
   })
   /*
@@ -110,10 +110,10 @@ module.exports = (app) => {
         }
         downloadImageAndResize(options, res)
       } else {
-        res.send('Supported Image types are: png, jpg, jpeg and bmp')
+        res.status(404).send({error: 'Supported Image types are: png, jpg, jpeg and bmp'})
       }
     } else {
-      res.send('Unauthorized')
+      res.status(404).send({error: 'Unauthorized'})
     }
   })
 }

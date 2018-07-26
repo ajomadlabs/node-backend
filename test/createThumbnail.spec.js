@@ -7,7 +7,7 @@ import 'chai/register-should'
 chai.use(chaiHttp)
 
 // Test for Create Thumbnail
-describe('/POST applyjsonpatch', () => {
+describe('/POST createthumb', () => {
   it('it should return resized image', (done) => {
     let imageDetails = {
       url: 'https://i.imgur.com/vpST9Ar.jpg'
@@ -17,6 +17,20 @@ describe('/POST applyjsonpatch', () => {
     .send(imageDetails)
     .end((err, res) => {
       res.should.have.status(200)
+      done()
+    })
+  })
+  it('it should return image format wrong', (done) => {
+    let imageDetails = {
+      url: 'https://i.imgur.com/vpST9Ar.pdf'
+    }
+    chai.request(server)
+    .post('/createthumb')
+    .send(imageDetails)
+    .end((err, res) => {
+      res.should.have.status(404)
+      res.body.should.be.a('object')
+      res.body.should.be.property('error')
       done()
     })
   })

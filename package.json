@@ -1,0 +1,31 @@
+{
+  "name": "hbbackend",
+  "version": "1.0.0",
+  "description": "HackerBay Backend",
+  "main": "server.js",
+  "scripts": {
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ajomadlabs/hbbackend.git"
+  },
+  "keywords": [
+    "hackerbay",
+    "backend",
+    "node",
+    "express"
+  ],
+  "author": "Ajo John",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/ajomadlabs/hbbackend/issues"
+  },
+  "homepage": "https://github.com/ajomadlabs/hbbackend#readme",
+  "dependencies": {
+    "body-parser": "^1.18.3",
+    "cors": "^2.8.4",
+    "express": "^4.16.3",
+    "morgan": "^1.9.0"
+  }
+}

@@ -4,6 +4,7 @@ import store from 'store'
 import jsonpatch from 'jsonpatch'
 import imgdownload from 'image-downloader'
 import imgresize from 'resize-img'
+import validator from 'email-validator'
 import file from 'fs'
 import path from 'path'
 import auth from '../config/auth'
@@ -59,9 +60,13 @@ module.exports = (app) => {
   app.post('/login', (req, res) => {
     const userName = req.body.username
     const password = req.body.password
-    const token = jwt.sign({data: userName + password}, auth.secret, {expiresIn: '1h'})
-    store.set('username', userName + password)
-    res.send({token: token})
+    if (validator.validate(userName) === true) {
+      const token = jwt.sign({data: userName + password}, auth.secret, {expiresIn: '1h'})
+      store.set('username', userName + password)
+      res.send({token: token})
+    } else {
+      res.status(404).send('Invalid Email')
+    }
   })
   /*
     Apply JSON Patch Route

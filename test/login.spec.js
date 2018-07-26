@@ -23,4 +23,18 @@ describe('/POST login', () => {
       done()
     })
   })
+
+  it('it should return invalid email', (done) => {
+    let userCredentials = {
+      username: 'ajojohn555gmail.com',
+      password: 'Ajojohn123'
+    }
+    chai.request(server)
+    .post('/login')
+    .send(userCredentials)
+    .end((err, res) => {
+      res.should.have.status(404)
+      done()
+    })
+  })
 })

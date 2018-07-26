@@ -2,16 +2,47 @@
 import jwt from 'jsonwebtoken';
 import store from 'store';
 import jsonpatch from 'jsonpatch';
+import imgdownload from 'image-downloader';
+import imgresize from 'resize-img';
+import file from 'fs';
+import path from 'path';
 import auth from '../config/auth';
 
 // Defining Helper Function - Authetication Verification
 const verify = (req, res) => {
   const token = req.headers['authorization'];
-  const decoded = jwt.verify(token, auth.secret);
-  if (decoded === store.get('username')) {
-    return true;
-  } else {
-    return false;
+  let decoded = '';
+  jwt.verify(token, auth.secret, (err, decode) => {
+    if (err) {
+      decoded = false;
+    } else { 
+      if (decode.data == store.get('username')) {
+        decoded = true;
+      } else {
+        decoded = false;
+      }
+    }
+  });
+  return decoded;
+}
+
+// Defining Helper Function - Download Image and Resize
+const downloadImageAndResize = async (options, res) => {
+  try {
+    await imgdownload.image(options).then(({
+      filename,
+      image
+    }) => {
+      imgresize(file.readFileSync(filename), {width: 50, height: 50}).then(data => {
+        res.setHeader('Content-type', 'image/png');
+        res.send(data);
+        file.unlinkSync(filename);
+      }).catch((err) => {
+        res.send('Error resizing image');
+      })
+    });
+  } catch (e) {
+    res.send('Error processing image')
   }
 }
 
@@ -28,7 +59,7 @@ module.exports = (app) => {
   app.post('/login', (req, res) => {
     const userName = req.body.username;
     const password = req.body.password;
-    const token = jwt.sign(userName, auth.secret);
+    const token = jwt.sign({data: userName}, auth.secret, {expiresIn: '1h'});
     store.set('username', userName);
     res.send({token: token});
   }),
@@ -46,6 +77,32 @@ module.exports = (app) => {
       const jsonPatchObject = req.body.jpobject;
       const patchDoc = jsonpatch.apply_patch(jsonObject, jsonPatchObject);
       res.send(patchDoc);
+    } else {
+      res.send('Unauthorized');
+    }
+  }),
+  /*
+    Creat thumbnail Route
+    Accepts Image URL
+    Downloads the image from the URL
+    Resize the image to 50x50
+    Sends the resized thumbnail 
+  */
+  app.post('/createthumb', (req, res) => {
+    const verification = verify(req, res);
+    if (verification === true) {
+      const imgurl = req.body.url;
+      const imgdest = auth.path;
+      const imgext = path.extname(imgurl);
+      if (imgext === '.jpg' || imgext === '.png' || imgext === '.jpeg' || imgext === '.bmp') {
+        const options = {
+          url: imgurl,
+          dest: imgdest
+        };
+        downloadImageAndResize(options, res);
+      } else {
+        res.send('Supported Image types are: png, jpg, jpeg and bmp');
+      }
     } else {
       res.send('Unauthorized');
     }

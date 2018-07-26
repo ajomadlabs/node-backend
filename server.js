@@ -15,6 +15,9 @@ app.use(morgan('dev'));
 app.use(bodyParser.json());
 app.use(cors());
 
+// Defining the Routes
+require('./routes/index')(app);
+
 // Listening to port
 app.listen(port);
 console.log('Server running on:' + ' ' + 'http://localhost:' + port);

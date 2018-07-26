@@ -53,5 +53,10 @@
     "mocha": "^5.2.0",
     "nodemon": "^1.18.3",
     "standard": "^11.0.1"
+  },
+  "standard": {
+    "ignore": [
+      "./test/*.spec.js"
+    ]
   }
 }

@@ -1,3 +1,4 @@
+/*eslint-disable */
 // Require test dev-dependencies
 import chai from 'chai'
 import chaiHttp from 'chai-http'
@@ -13,13 +14,11 @@ describe('/POST login', () => {
       username: 'ajojohn555@email.com',
       password: 'Ajojohn123'
     }
-    chai.request(server)
-    .post('/login')
-    .send(userCredentials)
-    .end((err, res) => {
+    chai.request(server).post('/login').send(userCredentials).end((err, res) => {
       res.should.have.status(200)
       res.body.should.be.a('object')
       res.body.should.be.property('token')
+      res.error(err)
       done()
     })
   })
@@ -29,12 +28,10 @@ describe('/POST login', () => {
       username: 'ajojohn555gmail.com',
       password: 'Ajojohn123'
     }
-    chai.request(server)
-    .post('/login')
-    .send(userCredentials)
-    .end((err, res) => {
+    chai.request(server).post('/login').send(userCredentials).end((err, res) => {
       res.should.have.status(404)
       res.body.should.be.property('error')
+      res.error(err)
       done()
     })
   })

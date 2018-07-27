@@ -18,11 +18,14 @@ module.exports = (app) => {
     const userName = req.body.username
     const password = req.body.password
     if (validator.validate(userName) === true) {
-      const token = jwt.sign({data: userName + password}, auth.secret, {expiresIn: '1h'})
-      store.set('username', userName + password)
-      res.send({token: token})
+      if (userName === auth.email && password === auth.password) {
+        const token = jwt.sign({data: userName + password}, auth.secret, {expiresIn: '1h'})
+        res.send({token: token})
+      } else {
+        res.status(401).send({error: 'Invalid Credentials'})
+      }
     } else {
-      res.status(404).send({error: 'Invalid Email'})
+      res.status(401).send({error: 'Email Not Proper'})
     }
   })
 }

@@ -1,7 +1,7 @@
 {
   "name": "hbbackend",
   "version": "1.0.0",
-  "description": "HackerBay Backend - Authentication Service",
+  "description": "HackerBay Backend - JSON Patch Service",
   "main": "index.js",
   "scripts": {
     "test": "mocha --compilers js:babel-core/register ./test/*.spec.js",
@@ -29,8 +29,8 @@
     "babel-preset-latest": "^6.24.1",
     "body-parser": "^1.18.3",
     "cors": "^2.8.4",
-    "email-validator": "^2.0.4",
     "express": "^4.16.3",
+    "jsonpatch": "^3.0.1",
     "jsonwebtoken": "^8.3.0",
     "morgan": "^1.9.0"
   },

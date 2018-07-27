@@ -1,6 +1,5 @@
 // Import required modules
 import jwt from 'jsonwebtoken'
-import store from 'store'
 import jsonpatch from 'jsonpatch'
 import auth from '../config/auth'
 

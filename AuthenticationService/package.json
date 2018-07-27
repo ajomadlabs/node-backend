@@ -4,7 +4,7 @@
   "description": "HackerBay Backend - Authentication Service",
   "main": "index.js",
   "scripts": {
-    "test": "mocha --compilers js:babel-core/register ./test/*.spec.js",
+    "test": "mocha --exit --compilers js:babel-core/register ./test/*.spec.js",
     "start": "node index.js",
     "dev": "nodemon index.js",
     "lint": "standard"

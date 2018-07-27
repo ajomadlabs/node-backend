@@ -23,7 +23,7 @@ produces:
 - application/json
 paths:
 # JSON Patching
-  /applyjsonpatch:
+  /patchservice/applyjsonpatch:
     post:
       security:
         - Bearer: []

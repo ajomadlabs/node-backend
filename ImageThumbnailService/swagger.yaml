@@ -23,7 +23,7 @@ produces:
 - application/json
 paths:
   # Create Thumbnail
-  /createthumb:
+  /imgservice/createthumb:
     post:
       security:
         - Bearer: []

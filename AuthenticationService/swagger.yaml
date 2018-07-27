@@ -23,7 +23,7 @@ produces:
 - application/json
 paths:
 # Authentication
-  /login:
+  /authservice/login:
     post:
       tags:
         - User Authentication

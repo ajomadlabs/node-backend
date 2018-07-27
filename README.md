@@ -73,4 +73,26 @@ Docker-compose-prod-yaml: &nbsp;For production
 
 Docker-compose: &nbsp;For development
 
-## Project 
+## Project Architecture
+
+- Client makes a request
+- Request hits the api server which is a ngnix container
+- API server routes the requests to the respective services
+
+## Pre-requisites
+
+- Nodejs >8
+- Docker
+- NPM
+
+## Installation
+
+- Clone the repository
+- Run `make build-dev` for developement
+- Run `make build-prod` for production
+
+## Test
+
+- Run `make test` -> This will run the linting, tests and gets the code coverage for all the services
+
+

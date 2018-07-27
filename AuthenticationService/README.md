@@ -11,3 +11,7 @@
 
 ## Local Authentication Server
 `npm start`
+
+## API Endpoint
+
+`http://localhost/authservice/login`

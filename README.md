@@ -95,6 +95,10 @@ Docker-compose: &nbsp;For development
 
 - Run `make test` -> This will run the linting, tests and gets the code coverage for all the services
 
+## Base URL
+
+`http://localhost`
+
 ## Running Services
 
 <img src="./docs/images/terminal.png">

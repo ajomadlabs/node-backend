@@ -11,3 +11,7 @@
 
 ## Local Image Thumbnail Server
 `npm start`
+
+## API Endpoint
+
+`http://localhost/imgservice/createthumb`

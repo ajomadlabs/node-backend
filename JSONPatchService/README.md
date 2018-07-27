@@ -11,3 +11,6 @@
 
 ## Local JSON Patch Server
 `npm start`
+
+## API Endpoint
+`http://localhost/patchservice/applyjsonpatch`

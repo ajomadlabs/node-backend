@@ -27,45 +27,45 @@ Contains three services:
 AuthenticationService
 
   - server.js: &nbsp;Runs Authentication Service
-  - routes
-      - index.js: &nbsp;Handles the '/login' route
-  - test
-      - login.spec.js: &nbsp;Contains tests for login route
-  - config
-      - auth.js: &nbsp;Contains configurations
-      - winston.js: &nbsp;Contains winston setup for the service
+  - routes contains
+  - &nbsp;&nbsp;index.js: &nbsp;Handles the '/login' route
+  - test contains
+  - &nbsp;&nbsp;login.spec.js: &nbsp;Contains tests for login route
+  - config contains
+  - &nbsp;&nbsp;auth.js: &nbsp;Contains configurations
+  - &nbsp;&nbsp;winston.js: &nbsp;Contains winston setup for the service
   - Dockerfile
   - swagger.yaml: &nbsp;Contains swagger specs for Authentication Service API
 
 JSONPatchService
 
   - server.js: &nbsp;Runs JSON Patch Service
-  - routes
-      - index.js: &nbsp;Handles the '/applyjsonpatch' route
-  - test
-      - jsonpatch.spec.js: &nbsp;Contains tests for applyjsonpatch route
-  - config
-      - auth.js: &nbsp;Contains configurations
-      - winston.js: &nbsp;Contains winston setup for the service
+  - routes contains
+  - &nbsp;&nbsp;index.js: &nbsp;Handles the '/applyjsonpatch' route
+  - test contains
+  - &nbsp;&nbsp;jsonpatch.spec.js: &nbsp;Contains tests for applyjsonpatch route
+  - config contains
+  - &nbsp;&nbsp;auth.js: &nbsp;Contains configurations
+  - &nbsp;&nbsp;winston.js: &nbsp;Contains winston setup for the service
   - Dockerfile
   - swagger.yaml: &nbsp;Contains swagger specs for JSON Patch Service API
 
 ImageThumbnailService
 
   - server.js: &nbsp;Runs ImageThumbnail Service
-  - routes
-      - index.js: &nbsp;Handles the '/createthumb' route
-  - test
-      - createThumbnail.spec.js: &nbsp;Contains tests for createthumb route
-  - config
-      - auth.js: &nbsp;Contains configurations
-      - winston.js: &nbsp;Contains winston setup for the service
+  - routes contains
+  - &nbsp;&nbsp;index.js: &nbsp;Handles the '/createthumb' route
+  - test contains
+  - &nbsp;&nbsp;createThumbnail.spec.js: &nbsp;Contains tests for createthumb route
+  - config contains
+  - &nbsp;&nbsp;auth.js: &nbsp;Contains configurations
+  - &nbsp;&nbsp;winston.js: &nbsp;Contains winston setup for the service
   - Dockerfile
   - swagger.yaml: &nbsp;Contains swagger specs for Image Thumbnail Service API
 
-Config
-  - nginx
-      - default.conf: Contains nginx configurations to handle requests to different services
+Config contains
+- &nbsp;&nbsp;nginx contains
+- &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;default.conf: Contains nginx configurations to handle requests to different services
 
 Makefile
 

@@ -1,0 +1,14 @@
+version: '3'
+services:
+  authservice:
+    image: ajojohn/authservice 
+  imgservice:
+    image: ajojohn/imageservice
+  patchservice:
+    image: ajojohn/patchservice
+  api:
+    image: nginx:alpine
+    ports:
+      - '80:80'
+    volumes:
+      - ./config/nginx:/etc/nginx/conf.d

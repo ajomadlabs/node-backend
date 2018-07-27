@@ -1,0 +1,14 @@
+version: '3'
+services:
+  authservice:
+    build: ./AuthenticationService
+  imgservice:
+    build: ./ImageThumbnailService
+  patchservice:
+    build: ./JSONPatchService
+  api:
+    image: nginx:alpine
+    ports:
+      - '80:80'
+    volumes:
+      - ./config/nginx:/etc/nginx/conf.d

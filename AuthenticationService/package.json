@@ -26,13 +26,15 @@
   },
   "homepage": "https://github.com/ajomadlabs/hbbackend#readme",
   "dependencies": {
+    "app-root-path": "^2.1.0",
     "babel-preset-latest": "^6.24.1",
     "body-parser": "^1.18.3",
     "cors": "^2.8.4",
     "email-validator": "^2.0.4",
     "express": "^4.16.3",
     "jsonwebtoken": "^8.3.0",
-    "morgan": "^1.9.0"
+    "morgan": "^1.9.0",
+    "winston": "^3.0.0"
   },
   "devDependencies": {
     "babel-core": "^6.26.3",

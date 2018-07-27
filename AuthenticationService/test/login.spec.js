@@ -28,7 +28,7 @@ describe('/POST login', () => {
       password: 'Ajojohn234'
     }
     chai.request(server).post('/login').send(userCredentials).end((err, res) => {
-      res.should.have.status(401)
+      res.should.have.status(404)
       res.body.should.be.property('error')
       done()
     })

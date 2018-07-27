@@ -95,4 +95,22 @@ Docker-compose: &nbsp;For development
 
 - Run `make test` -> This will run the linting, tests and gets the code coverage for all the services
 
+## Running Services
 
+<img src="./docs/images/terminal.png">
+<br>
+
+## AuthenticationService
+
+<img src="./docs/images/AuthenticationService.png">
+<br>
+
+## JSONPatchService
+
+<img src="./docs/images/JSONPatchService.png">
+<br>
+
+## ImageThumbnailService
+
+<img src="./docs/images/ImageThumbnailService.png">
+<br>

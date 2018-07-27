@@ -24,7 +24,7 @@ module.exports = (app) => {
         res.status(401).send({error: 'Invalid Credentials'})
       }
     } else {
-      res.status(401).send({error: 'Email Not Proper'})
+      res.status(404).send({error: 'Email Not Proper'})
     }
   })
 }

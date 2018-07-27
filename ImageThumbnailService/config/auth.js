@@ -3,5 +3,6 @@ module.exports = {
   'email': 'ajojohn555@gmail.com',
   'password': 'Ajojohn234',
   'path': './images',
-  'thumb': './thumbnails'
+  'thumb': './thumbnails',
+  'invalid': 'Joe'
 }

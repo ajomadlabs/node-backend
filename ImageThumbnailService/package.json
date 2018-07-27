@@ -4,7 +4,7 @@
   "description": "HackerBay Backend - Image Thumbnail Service",
   "main": "index.js",
   "scripts": {
-    "test": "mocha --exit --compilers js:babel-core/register ./test/*.spec.js",
+    "test": "nyc mocha --exit --compilers js:babel-core/register ./test/*.spec.js",
     "start": "node index.js",
     "dev": "nodemon index.js",
     "lint": "standard"
@@ -48,6 +48,7 @@
     "chai-http": "^4.0.0",
     "mocha": "^5.2.0",
     "nodemon": "^1.18.3",
+    "nyc": "^12.0.2",
     "standard": "^11.0.1"
   },
   "standard": {

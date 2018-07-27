@@ -42,7 +42,7 @@ module.exports = (app) => {
         res.status(404).send({error: 'Invalid Operation'})
       }
     } else {
-      res.status(404).send({error: 'Unauthorized'})
+      res.status(401).send({error: 'Unauthorized'})
     }
   })
 }

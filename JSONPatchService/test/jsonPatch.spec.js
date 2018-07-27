@@ -4,8 +4,13 @@ import chai from 'chai'
 import chaiHttp from 'chai-http'
 import server from '../server'
 import 'chai/register-should'
+import jwt from 'jsonwebtoken'
+import auth from '../config/auth'
 
 chai.use(chaiHttp)
+
+const token = jwt.sign({data: auth.email + auth.password}, auth.secret, {expiresIn: '1h'})
+const invalidtoken = jwt.sign({data: auth.email + auth.password + auth.invalid}, auth.secret, {expiresIn: '1h'})
 
 // Test for JSON Patching
 describe('/POST applyjsonpatch', () => {
@@ -21,14 +26,14 @@ describe('/POST applyjsonpatch', () => {
     }
     chai.request(server)
     .post('/applyjsonpatch')
-    .set('Authorization', 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjoiYWpvam9objU1NUBnbWFpbC5jb21Bam9qb2huIiwiaWF0IjoxNTMyNjM5ODIyLCJleHAiOjE1MzI2NDM0MjJ9.1v5lBAUiihowpmBdXFR7TEDMbS5EeQaAttA9mDyhoFA')
+    .set('Authorization', token)
     .send(patchObject).end((err, res) => {
       res.should.have.status(200)
       res.body.should.be.a('object')
       done()
     })
   })
-  it('it should return error message', (done) => {
+  it('it should return error message unauthorized', (done) => {
     let patchObject = {
       jobject: {
         baz: 'qux',
@@ -40,9 +45,9 @@ describe('/POST applyjsonpatch', () => {
     }
     chai.request(server)
     .post('/applyjsonpatch')
-    .set('Authorization', 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjoiYWpvam9objU1NUBnbWFpbC5jb21Bam9qb2huIiwiaWF0IjoxNTMyNjM5OTA2LCJleHAiOjE1MzI2NDM1MDZ9.yOr62VCiOwlIHPo47gjifhcdMBGB8gWfgXHJ-If2WBc')
+    .set('Authorization', invalidtoken)
     .send(patchObject).end((err, res) => {
-      res.should.have.status(404)
+      res.should.have.status(401)
       res.body.should.be.a('object')
       done()
     })

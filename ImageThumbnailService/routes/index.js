@@ -36,7 +36,7 @@ const downloadImageAndResize = async (options, res) => {
         res.status(200).send(data)
         file.unlinkSync(filename)
       }).catch((err) => {
-        res.status(404).send({error: err})
+        res.status(500).send({error: err})
       })
     })
   } catch (e) {
@@ -69,7 +69,7 @@ module.exports = (app) => {
         res.status(404).send({error: 'Supported Image types are: png, jpg, jpeg and bmp'})
       }
     } else {
-      res.status(404).send({error: 'Unauthorized'})
+      res.status(401).send({error: 'Unauthorized'})
     }
   })
 }

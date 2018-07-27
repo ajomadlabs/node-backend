@@ -1,6 +1,5 @@
 // Import required modules
 import jwt from 'jsonwebtoken'
-import store from 'store'
 import validator from 'email-validator'
 import auth from '../config/auth'
 

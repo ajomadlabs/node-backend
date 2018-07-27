@@ -1,0 +1,10 @@
+version: '3'
+services:
+  patchservice:
+    build: .
+  api:
+    image: nginx:alpine
+    ports:
+      - '80:80'
+    volumes:
+      - ./config/nginx:/etc/nginx/conf.d

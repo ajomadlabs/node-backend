@@ -1,0 +1,6 @@
+secret = 'your_secret'
+email = 'your_email'
+password = 'your_password'
+path = 'your_path eg: ./images'
+thumb = 'your_thumb_path eg: ./thumbnails'
+invalid = 'your_invalid_token_for_test_purposes'

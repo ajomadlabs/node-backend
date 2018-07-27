@@ -14,8 +14,8 @@ describe('/POST createthumb', () => {
       url: 'https://i.imgur.com/vpST9Ar.jpg'
     }
     chai.request(server).post('/createthumb').send(imageDetails).end((err, res) => {
+      console.log(res)
       res.should.have.status(200)
-      res.error(err)
       done()
     })
   })
@@ -27,7 +27,6 @@ describe('/POST createthumb', () => {
       res.should.have.status(404)
       res.body.should.be.a('object')
       res.body.should.be.property('error')
-      res.error(err)
       done()
     })
   })

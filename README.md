@@ -1,4 +1,4 @@
-# Hacker Bay Backend
+# Node Backend App
 
 ## Description
 
